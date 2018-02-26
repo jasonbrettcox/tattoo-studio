@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from '../../models/Client';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { ClientService } from '../../services/client.service';
+import { Router } from '@angular/router'
+
 
 
 @Component({
@@ -17,9 +21,29 @@ export class AddClientComponent implements OnInit {
     currentProject: ''
   
   }
-  constructor() { }
+  @ViewChild('clientForm') form: any;
+
+
+
+
+
+
+  constructor( private flashMessage: FlashMessagesService,
+            private clientService : ClientService ,
+            private router: Router){ }
 
   ngOnInit() {
   }
 
-}
+  onSubmit({value, valid}: {value: Client, valid: boolean}){
+    if(!valid){
+    this.flashMessage.show('Please fill out the form correctly', {cssClass: 'alert-danger',timeout: 4000})
+   } else{
+     // add new client and show message and redirect to dash
+    this.clientService.newClient(value);
+    
+    this.flashMessage.show('New client added', {cssClass: 'alert-success',timeout: 3000});
+    this.router.navigate(['/']);
+  
+  }}};
+  
