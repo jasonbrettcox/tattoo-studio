@@ -17,9 +17,10 @@ export class EditClientComponent implements OnInit {
     lastName: '',
     email: '',
     phone: '',
+    currentProject: '',
+    lastAppt: '',
     
   }
-
 
   constructor(
     private clientService: ClientService,
