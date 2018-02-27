@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/Forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/Forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { environment } from '../environments/environment';
@@ -23,6 +23,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
+import { SmsComponent } from './sms/sms.component';
 
 
 
@@ -39,7 +40,8 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     RegisterComponent,
     SettingsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SmsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase, 'clientpanel'),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ReactiveFormsModule
   ],
   providers: [ClientService, AuthService],
   bootstrap: [AppComponent]

@@ -1,0 +1,27 @@
+<h3>Send SMS to: {{ client.phone }} </h3>
+   
+<form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+      <div class="form-group">
+      <label for="sms">SMS Message</label>
+      <input 
+        type="text"
+        class="form-control"
+        name="sms"
+        #clientSMS="ngModel"
+        [ngClass]="{'is-invalid':clientSMS.errors && clientSMS.touched}"
+        [(ngModel)]="client.SMS"
+        required>
+  
+        <div [hidden]="!clientSMS.errors?.required" 
+        class="invalid-feedback">
+        An SMS message is required
+      </div>
+      
+    </div>  
+    <input type="submit" value="submit" class="btn btn-success btn-block">
+    </form>
+
+    
+  
+
+    
